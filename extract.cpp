@@ -3,8 +3,8 @@
 using namespace std;
 
 int main(int argc, char* argv[]){
-	if(argc != 4){
-		cout << "Usage: ./extract image.ppm key bitlength" << endl;
+	if(argc != 5){
+		cout << "Usage: ./extract image.ppm key bitlength alpha" << endl;
 		exit(0);
 	}
 
@@ -14,8 +14,9 @@ int main(int argc, char* argv[]){
 	Image img(argv[1]);
 	string key = string(argv[2]);
 	int bitlength = stoi(argv[3]);
+	int alpha = stoi(argv[4]);
 	
-	string message = img.extract(key, bitlength);
+	string message = img.extract(key, bitlength, alpha);
 
 	cout << message << endl;
 

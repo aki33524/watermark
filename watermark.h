@@ -5,8 +5,6 @@
 #include <string>
 using namespace std;
 
-#define ALPHA 3
-
 class Pixel{
 public:
 	int r, g, b;
@@ -31,14 +29,14 @@ public:
 	int maxv;
 
 	Image(string filename);
-	void embed(string embedded, string key);
-	string extract(string key, int bsize);
+	void embed(string embedded, string key, int alpha);
+	string extract(string key, int bsize, int alpha);
 	void save(string filename);
 
 private:
 	void load_P3(ifstream &fin);
 	void reset_mono();
-	vector<int> make_wr(string key, int wrsize);
+	vector<int> make_wr(string key, int wrsize, int alpha);
 
 };
 

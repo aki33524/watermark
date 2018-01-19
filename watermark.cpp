@@ -61,12 +61,12 @@ void Image::reset_mono(){
 	}
 }
 
-void Image::embed(string embedded, string key){
+void Image::embed(string embedded, string key, int alpha){
 	auto bemb = to_binary(embedded);
 	int bsize = bemb.size();
 	int wrsize = H*W/bsize;
 
-	vector<int> wr = make_wr(key, wrsize);
+	vector<int> wr = make_wr(key, wrsize, alpha);
 
 	vector<int> shuffled(H*W);
 	for(int i=0; i<H*W; i++)
@@ -88,11 +88,11 @@ void Image::embed(string embedded, string key){
 	}
 }
 
-string Image::extract(string key, int bsize){
+string Image::extract(string key, int bsize, int alpha){
 	reset_mono();
 
 	int wrsize = H*W/bsize;
-	vector<int> wr = make_wr(key, wrsize);
+	vector<int> wr = make_wr(key, wrsize, alpha);
 
 	double mwr = 0;
 	for(auto v: wr){
@@ -131,12 +131,12 @@ string Image::extract(string key, int bsize){
 	return to_string(bin);
 }
 
-vector<int> Image::make_wr(string key, int wrsize){
+vector<int> Image::make_wr(string key, int wrsize, int alpha){
 	ARC4 rc4; rc4.ksa(key);
 
 	vector<int> wr;
 	for(int i=0; i<wrsize; i++)
-		wr.push_back(rc4.rand(ALPHA*2+1)-ALPHA);
+		wr.push_back(rc4.rand(alpha*2+1)-alpha);
 
 	return wr;
 }
