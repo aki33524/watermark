@@ -95,10 +95,13 @@ string Image::extract(string key, int bsize, int alpha){
 	vector<int> wr = make_wr(key, wrsize, alpha);
 
 	double mwr = 0;
+	double lwr = 0;
 	for(auto v: wr){
 		mwr += v;
+		lwr += v*v;
 	}
 	mwr /= wrsize;
+	lwr = sqrt(lwr);
 
 	vector<int> shuffled(H*W);
 	for(int i=0; i<H*W; i++)
@@ -108,13 +111,16 @@ string Image::extract(string key, int bsize, int alpha){
 	vector<bool> bin;
 	for(int wi=0; wi<bsize; wi++){
 		double mv = 0;
+		double lv = 0;
 		for(int i=0; i<wrsize; i++){
 			int x = shuffled[wi*wrsize + i];
 			int h = x/W;
 			int w = x%W;
 			mv += monodata[h][w];
+			lv += monodata[h][w]*monodata[h][w];
 		}
 		mv /= wrsize;
+		lv = sqrt(lv);
 		
 		double sum = 0;
 		for(int i=0; i<wrsize; i++){
@@ -125,8 +131,13 @@ string Image::extract(string key, int bsize, int alpha){
 			sum += (monodata[h][w]-mv) * (wr[i]-mwr);
 		}
 
-		// TODO: 棄却域の計算
-		bin.push_back(sum/wrsize >= 0);
+		double x = sum / lwr / lv;
+		if(abs(x) < 0.005){
+			// TODO: 棄却域の計算
+			cout << wi << " " << x << endl;
+		}
+
+		bin.push_back(x >= 0);
 	}
 	return to_string(bin);
 }
