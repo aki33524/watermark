@@ -136,7 +136,7 @@ vector<int> Image::make_wr(string key, int wrsize){
 
 	vector<int> wr;
 	for(int i=0; i<wrsize; i++)
-		wr.push_back(rc4.rand(2) * ALPHA);
+		wr.push_back(rc4.rand(ALPHA*2+1)-ALPHA);
 
 	return wr;
 }
