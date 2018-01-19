@@ -1,8 +1,6 @@
 # watermark
 Digital Watermark system using key
 
-This program has robustness for converting grayscale.
-
 This is made for assignment of my media security lesson.
 
 # Install
@@ -22,10 +20,20 @@ This program supports only P3 ppm image. You can convert the image with ImageMag
 
 ![image.ppm](https://github.com/aki33524/watermark/blob/master/demo/image.png)
 
-`./embed demo/image.ppm password "hoge" demo/embed1.ppm`
+`./embed demo/image.ppm password "OSAKA-U" demo/embed.ppm`
 
-![embed1.ppm](https://github.com/aki33524/watermark/blob/master/demo/embed1.png)
+![embed.ppm](https://github.com/aki33524/watermark/blob/master/demo/embed.png)
 
-`./extract demo/embed1.ppm password 32 3`
+`./extract demo/embed.ppm password 32 3`
 
-'hoge'
+`OSAKA-U`
+
+This program has robustness for converting grayscale.
+
+`convert demo/embed.ppm -compress none -type GrayScale demo/embed_gray.ppm`
+
+![embed_gray.ppm](https://github.com/aki33524/watermark/blob/master/demo/embed_gray.png)
+
+`./extract demo/embed.ppm password 32 3`
+
+`OSAKA-U`
