@@ -17,9 +17,9 @@ public:
 		return 0.299 * r + 0.587 * g + 0.114 * b;
 	}
 	void add(int x){
-		r += x;
-		g += x;
-		b += x;
+		r = max(0, min(255, r+x));
+		g = max(0, min(255, g+x));
+		b = max(0, min(255, b+x));
 	}
 };
 

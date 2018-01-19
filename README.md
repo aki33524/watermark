@@ -1,7 +1,9 @@
 # watermark
 Digital Watermark system using key
 
-This program is made for assignment of media security lesson.
+This program has robustness for converting grayscale.
+
+This is made for assignment of media security lesson.
 
 # Install
 `make all`
@@ -12,10 +14,14 @@ This program is made for assignment of media security lesson.
 `./extract image.ppm key bitlength`
 
 # Example
-`convert image.jpg -compress none image.ppm`
+`convert demo/image.jpg -compress none demo/image.ppm`
 
 This program support only P3 ppm image. You can convert the image with ImageMagick.
 
-![image.ppm](https://github.com/aki33524/watermark/blob/master/demo/image.ppm)
+![image.ppm](https://github.com/aki33524/watermark/blob/master/demo/image.png)
 
-`./embed image.ppm password "" output.ppm`
+`./embed demo/image.ppm password "fuga" demo/embed.ppm`
+
+![embed.ppm](https://github.com/aki33524/watermark/blob/master/demo/embed.png)
+
+`./extract demo/embed.ppm password 32`
