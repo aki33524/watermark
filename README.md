@@ -11,7 +11,7 @@ This is made for assignment of my media security lesson.
 
 `./extract image.ppm key bitlength alpha`
 
-When you make alpha greater, embedded image will be lower quality. But you can embed longer message.
+When you make alpha greater, the embedded image will be lower quality. But you can embed longer message.
 
 # Example
 `convert demo/image.jpg -compress none demo/image.ppm`
