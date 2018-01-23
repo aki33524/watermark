@@ -20,11 +20,11 @@ This program supports only P3 ppm image. You can convert the image with ImageMag
 
 ![image.ppm](https://github.com/aki33524/watermark/blob/master/demo/image.png)
 
-`./embed demo/image.ppm password "OSAKA-U" demo/embed.ppm`
+`./embed demo/image.ppm password "OSAKA-U" demo/embed.ppm 3`
 
 ![embed.ppm](https://github.com/aki33524/watermark/blob/master/demo/embed.png)
 
-`./extract demo/embed.ppm password 32 3`
+`./extract demo/embed.ppm password 56 3`
 
 `OSAKA-U`
 
@@ -34,6 +34,6 @@ This program has robustness for converting grayscale.
 
 ![embed_gray.ppm](https://github.com/aki33524/watermark/blob/master/demo/embed_gray.png)
 
-`./extract demo/embed.ppm password 32 3`
+`./extract demo/embed_gray.ppm password 56 3`
 
 `OSAKA-U`
